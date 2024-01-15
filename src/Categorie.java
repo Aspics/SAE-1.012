@@ -61,30 +61,16 @@ public class Categorie {
 
             // initialisation du lexique de la catégorie à partir du contenu d'un fichier texte
 
+
             // lecture du fichier d'entrée
             ArrayList<Depeche> depeche = Classification.lectureDepeches(nomFichier);
             
-            // this part is needed in order to use the initDico function since it takes a category as a parameter
-            // create an ArrayList of all categories in depeche
-            ArrayList<String> categories = new ArrayList<>();
-            for (int i = 0; i < depeche.size(); i++) {
-                // check if the categorie is in the list
-                if (!categories.contains(depeche.get(i).getCategorie()))  {
-                    // add the categorie to the list
-                    categories.add(depeche.get(i).getCategorie());
-                }
-            }
-            
             // create an ArrayList of all words in depeche
             ArrayList<PaireChaineEntier> lexique = new ArrayList<>();
-            // for each category
-            for (String cat : categories) {
-                // add all words from the category to the lexique
-                lexique.addAll(Classification.initDico(depeche, cat));
-            }
-
-            // the lexique contains several time the sames words provided they were in used different categories
-            // all check for knowing which category the chains does belong to should not be stopped with the first occurence of the word
+            
+            // add all words from the category to the lexique
+            lexique.addAll(Classification.initDico(depeche, nom));
+            
             
             this.lexique = lexique;
             
