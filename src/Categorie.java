@@ -78,6 +78,9 @@ public class Categorie {
             for (String cat : categories) {
                 lexique.addAll(Classification.initDico(depeche, cat));
             }
+
+            // the lexique contains several time the sames words proveded they were in used different categories
+            // all check for knowing which category the chains does belong to should not be stopped with the first occurence of the word
             
             this.lexique = lexique;
             
