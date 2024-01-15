@@ -2,15 +2,22 @@ Part 1 :
 
 5.1 (partially done since that's just doing the lexique by hand so that's dumb)
 
+
 5.2 a) Done
+
 5.2 b & c) Done but to test
+
 5.2 d & e) Done but to test
+
 
 5.3 a & b) TODO
 
+
 5.4 a & b) TODO
 
+
 5.5 a) Done
+
 5.5) TODO
 
 5.6) TODO? Dunno what they want exactly
