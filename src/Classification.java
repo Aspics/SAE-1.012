@@ -7,7 +7,10 @@ import java.util.Scanner;
 public class Classification {
 
 
-    private static ArrayList<Depeche> lectureDepeches(String nomFichier) {
+    public static ArrayList<Depeche> lectureDepeches(String nomFichier) {
+        // Warning : Changed lectureDepeches from private to public to be able to use it in Categorie.java
+
+
         //creation d'un tableau de dépêches
         ArrayList<Depeche> depeches = new ArrayList<>();
         try {
@@ -88,7 +91,6 @@ public class Classification {
                 }
             }
         }
-
 
         return resultat;
 

@@ -13,6 +13,7 @@ public class UtilitairePaireChaineEntier {
      */
     public static int indicePourChaine(ArrayList<PaireChaineEntier> listePaires, String chaine) {
         for (int i = 0; i < listePaires.size(); i++) {
+            //Check if the chaine is in the list
             if (listePaires.get(i).getChaine().equals(chaine)) {
                 return i;
             }
@@ -31,7 +32,9 @@ public class UtilitairePaireChaineEntier {
      */
     public static int entierPourChaine(ArrayList<PaireChaineEntier> listePaires, String chaine) {
         for (int i = 0; i < listePaires.size(); i++) {
+            //Check if the chaine is in the list
             if (listePaires.get(i).getChaine().equals(chaine)) {
+                //Return it's entier associated with the chaine
                 return listePaires.get(i).getEntier();
             }
         }
