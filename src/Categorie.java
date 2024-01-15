@@ -73,7 +73,12 @@ public class Categorie {
                     categories.add(depeche.get(i).getCategorie());
                 }
             }
-            ArrayList<PaireChaineEntier> lexique = Classification.initDico(depeche, this.nom);
+
+            ArrayList<PaireChaineEntier> lexique = new ArrayList<>();
+            for (String cat : categories) {
+                lexique.addAll(Classification.initDico(depeche, cat));
+            }
+            
             this.lexique = lexique;
             
         }
