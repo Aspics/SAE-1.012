@@ -45,8 +45,51 @@ public class Classification {
     }
 
 
+    /**
+     * Initializes a dictionary of word-frequency pairs based on the given list of depeches and category.
+     * 
+     * @param depeches The list of depeches.
+     * @param categorie The category of depeches to consider.
+     * @return The initialized dictionary of word-frequency pairs.
+     */
     public static ArrayList<PaireChaineEntier> initDico(ArrayList<Depeche> depeches, String categorie) {
+        
+
         ArrayList<PaireChaineEntier> resultat = new ArrayList<>();
+
+        for (int i = 0; i < depeches.size(); i++) {
+
+            //Check if depeche is in the right category
+            if (depeches.get(i).getCategorie().equals(categorie)) {
+
+                for (int j = 0; j < depeches.get(i).getMots().size(); j++) {
+
+                    //Check if mot is already in the list
+                    String mot = depeches.get(i).getMots().get(j);
+                    boolean containsMot = false;
+                    for (PaireChaineEntier paire : resultat) {
+                        if (paire.getChaine().equals(mot)) {
+                            containsMot = true;
+                            break;
+                        }
+                    }
+                    //If not, add it
+                    if (!containsMot) {
+                        resultat.add(new PaireChaineEntier(mot, 1));
+                    } else {
+                        //If yes, increment its score
+                        for (PaireChaineEntier paire : resultat) {
+                            if (paire.getChaine().equals(mot)) {
+                                paire.setEntier(paire.getEntier() + 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
         return resultat;
 
     }
