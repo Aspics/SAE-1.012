@@ -18,7 +18,8 @@ public class Depeche {
     }
 
 
-    private ArrayList<String> decoupeEnMots(String contenu) {
+    // Warning : changed from private to public and to static to be able to use it in Categorie.java initLexique.
+    public static ArrayList<String> decoupeEnMots(String contenu) {
         String chaine = contenu.toLowerCase();
         chaine = chaine.replace('\n', ' ');
         chaine = chaine.replace('.', ' ');

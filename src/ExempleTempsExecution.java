@@ -7,6 +7,7 @@ public class ExempleTempsExecution {
         System.out.println("entrez votre nom :");
         long startTime = System.currentTimeMillis();
         lecteur.nextLine();
+        lecteur.close();
         long endTime = System.currentTimeMillis();
         System.out.println("votre saisie a été réalisée en : " + (endTime-startTime) + "ms");
     }
