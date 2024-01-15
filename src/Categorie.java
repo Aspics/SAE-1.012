@@ -68,16 +68,18 @@ public class Categorie {
             // create an ArrayList of all categories in depeche
             ArrayList<String> categories = new ArrayList<>();
             for (int i = 0; i < depeche.size(); i++) {
-                //Check if the categorie is in the list
+                // check if the categorie is in the list
                 if (!categories.contains(depeche.get(i).getCategorie()))  {
-                    //Add the categorie to the list
+                    // add the categorie to the list
                     categories.add(depeche.get(i).getCategorie());
                 }
             }
             
             // create an ArrayList of all words in depeche
             ArrayList<PaireChaineEntier> lexique = new ArrayList<>();
+            // for each category
             for (String cat : categories) {
+                // add all words from the category to the lexique
                 lexique.addAll(Classification.initDico(depeche, cat));
             }
 
