@@ -1,6 +1,7 @@
 public class PaireChaineEntier {
-    private String chaine;
-    private int entier;
+
+    private String chaine; // un mot du lexique
+    private int entier; // nombre d'occurrences du mot dans la catégorie
 
     public PaireChaineEntier(String chaine, int entier) {
         this.chaine = chaine;
