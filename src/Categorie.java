@@ -64,7 +64,8 @@ public class Categorie {
             // lecture du fichier d'entrée
             ArrayList<Depeche> depeche = Classification.lectureDepeches(nomFichier);
             
-            //create an ArrayList of all categories in depeche
+            // this part is needed in order to use the initDico function since it takes a category as a parameter
+            // create an ArrayList of all categories in depeche
             ArrayList<String> categories = new ArrayList<>();
             for (int i = 0; i < depeche.size(); i++) {
                 //Check if the categorie is in the list
@@ -73,13 +74,14 @@ public class Categorie {
                     categories.add(depeche.get(i).getCategorie());
                 }
             }
-
+            
+            // create an ArrayList of all words in depeche
             ArrayList<PaireChaineEntier> lexique = new ArrayList<>();
             for (String cat : categories) {
                 lexique.addAll(Classification.initDico(depeche, cat));
             }
 
-            // the lexique contains several time the sames words proveded they were in used different categories
+            // the lexique contains several time the sames words provided they were in used different categories
             // all check for knowing which category the chains does belong to should not be stopped with the first occurence of the word
             
             this.lexique = lexique;
