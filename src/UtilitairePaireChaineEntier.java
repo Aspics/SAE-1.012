@@ -4,7 +4,8 @@ public class UtilitairePaireChaineEntier {
 
 
     /**
-     * Returns the index of the first occurrence of the specified string in the given list of PaireChaineEntier objects.
+     * Returns the index of the first occurrence of the specified string in the given list of PaireChaineEntier objects (listePaires).
+     * If no matching string is found, returns -1.
      * 
      * @param listePaires The list of PaireChaineEntier objects to search in.
      * @param chaine The chaine to search for.
@@ -21,7 +22,7 @@ public class UtilitairePaireChaineEntier {
     }
 
     /**
-     * Returns the integer value associated with the given string in the list of PaireChaineEntier objects.
+     * Returns the integer value associated with the given string in the list of PaireChaineEntier objects (listePaires).
      * If no matching string is found, returns 0.
      *
      * @param listePaires the list of PaireChaineEntier objects to search in.
