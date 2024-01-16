@@ -48,7 +48,7 @@ public class Classification {
      *
      * @param depeches     The list of depeche to calculate the score of.
      * @param categories   The list of categories used.
-     * @param nomFichier   The name of the file to write theresults to.
+     * @param nomFichier   The name of the file to write the results to.
      */
     public static void classementDepeches(ArrayList<Depeche> depeches, ArrayList<Categorie> categories, String nomFichier) {
         Hashtable<String, Integer> justes = new Hashtable<>();
@@ -78,7 +78,7 @@ public class Classification {
             for (String c : justes.keySet()) {
                 file.write(c + ":\t\t\t\t" + justes.get(c) + "%\n");
             }
-            
+
             // write the average percentage of correct classifications
             int moy = 0;
             for (int i : justes.values()) {
