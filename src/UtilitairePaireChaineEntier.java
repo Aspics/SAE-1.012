@@ -6,6 +6,7 @@ import java.util.Map;
 public class UtilitairePaireChaineEntier {
 
 
+    // Warning: this method is useless with HashMaps
     /**
      * Returns the index of the first occurrence of the specified string in the given list of PaireChaineEntier objects (listePaires).
      * If no matching string is found, returns -1.
