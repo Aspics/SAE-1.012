@@ -1,8 +1,7 @@
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Classification {
 
@@ -45,6 +44,32 @@ public class Classification {
 
 
     public static void classementDepeches(ArrayList<Depeche> depeches, ArrayList<Categorie> categories, String nomFichier) {
+        Dictionary<String, Integer> justes = new Hashtable<>();
+        for (Categorie c : categories) {
+            justes.put(c.getNom(), 0);
+        }
+        try {
+
+            FileWriter file = new FileWriter(nomFichier);
+            for (Depeche d : depeches) {
+                ArrayList<PaireChaineEntier> scores = new ArrayList<>();
+
+                for (Categorie c : categories) {
+                    scores.add(new PaireChaineEntier(c.getNom(), c.score(d)));
+                }
+                file.write(d.getId() + ":" + UtilitairePaireChaineEntier.chaineMax(scores));
+                if (UtilitairePaireChaineEntier.chaineMax(scores).equals(d.getCategorie())) {
+                    justes.put(d.getCategorie(), justes.get(d.getCategorie()) + 1);
+                }
+            }
+            for (String c : justes.keys()) {
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
