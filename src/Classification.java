@@ -107,7 +107,9 @@ public class Classification {
      */
     public static void calculScores(ArrayList<Depeche> depeches, String categorie, ArrayList<PaireChaineEntier> dictionnaire) {
         for (Depeche dep : depeches){
+            // check if depeche is in the right category
             if (dep.getCategorie().equals(categorie)){
+                // increment the score of each word in the depeche
                 for (String mot : dep.getMots()){
                     for (PaireChaineEntier paire : dictionnaire){
                         if (paire.getChaine().equals(mot)){
@@ -117,6 +119,7 @@ public class Classification {
                 }
             }
             else {
+                // decrement the score of each word in the depeche
                 for (String mot : dep.getMots()){
                     for (PaireChaineEntier paire : dictionnaire){
                         if (paire.getChaine().equals(mot)){
