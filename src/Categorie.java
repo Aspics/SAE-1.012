@@ -40,14 +40,12 @@ public class Categorie {
 
             // skip the lines without sentences then read them if they are in the category
             while (scanner.hasNextLine()) {
-                
-                while (scanner.hasNextLine() && !ligne.equals("")) {
-                    ligne = scanner.nextLine();
-                    if (!ligne.equals("")) {
-                        String[] res = ligne.split(":");
-                        // add the word and it's score to the lexique
-                        lexique.add(new PaireChaineEntier(res[0], Integer.valueOf(res[1])));
-                    }
+                 
+                ligne = scanner.nextLine();
+                if (!ligne.equals("")) {
+                    String[] res = ligne.split(":");
+                    // add the word and it's score to the lexique
+                    lexique.add(new PaireChaineEntier(res[0], Integer.valueOf(res[1])));
                 }
                 
             }
