@@ -39,7 +39,7 @@ public class Categorie {
             String ligne = "";
 
             // skip the lines without sentences then read them if they are in the category
-            while (scanner.hasNextLine()) {
+            while (scanner.hasNextLine() && !ligne.equals("")) {
                  
                 ligne = scanner.nextLine();
                 if (!ligne.equals("")) {
