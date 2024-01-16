@@ -1,8 +1,8 @@
-Part 1 : DONE
+# Part 1 : DONE
 
 5.1 (partially done since that's just doing the lexicon by hand so that's dumb)
 
-Part 2 :
+# Part 2 :
 
 3.1) Done
 
