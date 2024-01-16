@@ -41,28 +41,45 @@ public class Classification {
     }
 
 
+
+    /**
+     *  Calulate for each categorie of categories the score of each depeche of depeches
+     *  Writes the classification results to a file.
+     *
+     * @param depeches     The list of depeche to calculate the score of.
+     * @param categories   The list of categories used.
+     * @param nomFichier   The name of the file to write theresults to.
+     */
     public static void classementDepeches(ArrayList<Depeche> depeches, ArrayList<Categorie> categories, String nomFichier) {
         Hashtable<String, Integer> justes = new Hashtable<>();
+        // init the hashtable with the categories and 0 as default value
         for (Categorie c : categories) {
             justes.put(c.getNom(), 0);
         }
         try {
-
+            
+            // init the file to write to
             FileWriter file = new FileWriter(nomFichier);
+            // for each depeche
             for (Depeche d : depeches) {
+                // calculate the score for each categorie
                 ArrayList<PaireChaineEntier> scores = new ArrayList<>();
 
                 for (Categorie c : categories) {
                     scores.add(new PaireChaineEntier(c.getNom(), c.score(d)));
                 }
+                // write the results to the file
                 file.write(d.getId() + ":" + UtilitairePaireChaineEntier.chaineMax(scores) + "\n");
                 if (UtilitairePaireChaineEntier.chaineMax(scores).equals(d.getCategorie())) {
                     justes.put(d.getCategorie(), justes.get(d.getCategorie()) + 1);
                 }
             }
+            // write the percentage of correct classifications
             for (String c : justes.keySet()) {
                 file.write(c + ":\t\t\t\t" + justes.get(c) + "%\n");
             }
+            
+            // write the average percentage of correct classifications
             int moy = 0;
             for (int i : justes.values()) {
                 moy += i;
