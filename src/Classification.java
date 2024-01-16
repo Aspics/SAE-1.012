@@ -24,9 +24,9 @@ public class Classification {
                 String categorie = ligne.substring(3);
                 ligne = scanner.nextLine();
                 String lignes = ligne.substring(3);
-                while (scanner.hasNextLine() && !ligne.equals("")) {
+                while (scanner.hasNextLine() && !ligne.isEmpty()) {
                     ligne = scanner.nextLine();
-                    if (!ligne.equals("")) {
+                    if (!ligne.isEmpty()) {
                         lignes = lignes + '\n' + ligne;
                     }
                 }

@@ -83,7 +83,7 @@ public class UtilitairePaireChaineEntier {
             nb += paire.getEntier();
         }
         // return the average
-        return nb/listePaires.size();
+        return (float) nb /listePaires.size();
     }
 
 }

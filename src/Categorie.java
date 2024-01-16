@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Categorie {
 
-    private String nom; // le nom de la catégorie p.ex : sport, politique,...
+    private final String nom; // le nom de la catégorie p.ex : sport, politique,...
     private ArrayList<PaireChaineEntier> lexique; //le lexique de la catégorie
 
     // constructeur
@@ -41,10 +41,10 @@ public class Categorie {
             // skip the lines without sentences then read them if they are in the category
             while (scanner.hasNextLine()) {
                 ligne = scanner.nextLine();
-                if (!ligne.equals("")) {
+                if (!ligne.isEmpty()) {
                     String[] res = ligne.split(":");
                     // add the word and it's score to the lexique
-                    lexique.add(new PaireChaineEntier(res[0], Integer.valueOf(res[1])));
+                    lexique.add(new PaireChaineEntier(res[0], Integer.parseInt(res[1])));
                 }
                 
             }
