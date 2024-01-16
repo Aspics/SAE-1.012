@@ -25,17 +25,13 @@ public class Categorie {
 
 
     // initialisation du lexique de la catégorie à partir du contenu d'un fichier texte
+   
     /**
-     * Initializes the lexique by reading sentences from a file and adding unique words to the lexique.
-     * The lexique is stored as an ArrayList of PaireChaineEntier objects.
+     * Initializes the lexique by reading the contents of a file.
      * 
-     * @param nomFichier The name of the file to read sentences from.
+     * @param nomFichier the name of the file to read from
      */
     public void initLexique(String nomFichier) {
-
-        // Warning : Really not sure if it'll work
-        // Now at v2.0 it nearly works for sure bu still
-        // if not try the second initLexique function it's wayyyy better
 
         ArrayList<PaireChaineEntier> lexique = new ArrayList<>();
 
@@ -94,6 +90,12 @@ public class Categorie {
         }
 
     //calcul du score d'une dépêche pour la catégorie
+    /**
+     * Calculates the score of a depeche for the category.
+     * 
+     * @param d The depeche to calculate the score for.
+     * @return The score of the depeche for the category.
+     */
     public int score(Depeche d) {
         int score = 0;
         for (String word : d.getMots()) {

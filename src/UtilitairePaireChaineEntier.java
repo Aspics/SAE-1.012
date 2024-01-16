@@ -61,7 +61,13 @@ public class UtilitairePaireChaineEntier {
         return chaine;
     }
 
-
+    
+    /**
+     * Calculates the average of the integers in a list of PaireChaineEntier objects.
+     * 
+     * @param listePaires The list of PaireChaineEntier objects.
+     * @return The average of the integers in the list.
+     */
     public static float moyenne(ArrayList<PaireChaineEntier> listePaires) {
         int nb = 0;
         int i = listePaires.size();

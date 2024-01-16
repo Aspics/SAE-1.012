@@ -99,6 +99,13 @@ public class Classification {
     public static void calculScores(ArrayList<Depeche> depeches, String categorie, ArrayList<PaireChaineEntier> dictionnaire) {
     }
 
+
+    /**
+     * Calculates the weight based on the given score.
+     * 
+     * @param score the score to calculate the weight for
+     * @return the weight corresponding to the score
+     */
     public static int poidsPourScore(int score) {
         if (score < 100){return 1;}
         else if (score > 100 && score < 400){return 2;}
