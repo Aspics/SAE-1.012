@@ -42,11 +42,32 @@ public class UtilitairePaireChaineEntier {
     
     }
 
+    /**
+     * Returns the string with the highest integer value in the list of PaireChaineEntier objects (listePaires).
+     * If the list is empty, returns an empty string.
+     *
+     * @param listePaires the list of PaireChaineEntier objects to search in.
+     * @return the string with the highest integer value, or an empty string if the list is empty.
+     */
     public static String chaineMax(ArrayList<PaireChaineEntier> listePaires) {
-        return "SPORTS";
+        int max = 0;
+        String chaine = "";
+        for (PaireChaineEntier paire : listePaires) {
+            if (paire.getEntier() > max) {
+                max = paire.getEntier();
+                chaine = paire.getChaine();
+            }
+        }
+        return chaine;
     }
 
-
+    
+    /**
+     * Calculates the average of the integers in a list of PaireChaineEntier objects.
+     * 
+     * @param listePaires The list of PaireChaineEntier objects.
+     * @return The average of the integers in the list.
+     */
     public static float moyenne(ArrayList<PaireChaineEntier> listePaires) {
         int nb = 0;
         int i = listePaires.size();

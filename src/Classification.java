@@ -121,9 +121,51 @@ public class Classification {
 
     }
 
+
+    /**
+     * Calculates the scores for each word in the given list of Depeche objects based on the specified category.
+     * Updates the integer value of each PaireChaineEntier object in the given dictionary accordingly.
+     *
+     * @param depeches    the list of Depeche objects
+     * @param categorie   the category to calculate scores for
+     * @param dictionnaire the dictionary containing PaireChaineEntier objects
+     */
     public static void calculScores(ArrayList<Depeche> depeches, String categorie, ArrayList<PaireChaineEntier> dictionnaire) {
+        // for each depeche
+        for (Depeche dep : depeches){
+            // check if depeche is in the right category
+            if (dep.getCategorie().equals(categorie)){
+                // increment the score of each word in the depeche
+                for (String mot : dep.getMots()){
+                    for (PaireChaineEntier paire : dictionnaire){
+                        if (paire.getChaine().equals(mot)){
+                            paire.setEntier(paire.getEntier() + 1);
+                        }
+                    }
+                }
+            }
+            else {
+                // decrement the score of each word in the depeche
+                for (String mot : dep.getMots()){
+                    for (PaireChaineEntier paire : dictionnaire){
+                        if (paire.getChaine().equals(mot)){
+                            paire.setEntier(paire.getEntier() - 1);
+                        }
+                    }
+                }
+            }
+                
+        }
+
     }
 
+
+    /**
+     * Calculates the weight based on the given score.
+     * 
+     * @param score the score to calculate the weight for
+     * @return the weight corresponding to the score
+     */
     public static int poidsPourScore(int score) {
         if (score < 100){return 1;}
         else if (score > 100 && score < 400){return 2;}
