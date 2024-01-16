@@ -48,6 +48,7 @@ public class Categorie {
                     ligne = scanner.nextLine();
                     if (!ligne.equals("")) {
                         String[] res = ligne.split(":");
+                        // add the word and it's score to the lexique
                         lexique.add(new PaireChaineEntier(res[0], Integer.valueOf(res[1])));
                     }
                 }

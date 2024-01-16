@@ -107,12 +107,12 @@ public class Classification {
 
         for (int i = 0; i < depeches.size(); i++) {
 
-            //Check if depeche is in the right category
+            // check if depeche is in the right category
             if (depeches.get(i).getCategorie().equals(categorie)) {
 
                 for (int j = 0; j < depeches.get(i).getMots().size(); j++) {
 
-                    //Check if mot is already in the list
+                    // check if mot is already in the list
                     String mot = depeches.get(i).getMots().get(j);
                     boolean containsMot = false;
                     for (PaireChaineEntier paire : resultat) {
@@ -121,7 +121,7 @@ public class Classification {
                             break;
                         }
                     }
-                    //If not, add it
+                    // if not, add it
                     if (!containsMot) {
                         resultat.add(new PaireChaineEntier(mot, 0));
                     }

@@ -15,9 +15,11 @@ public class UtilitairePaireChaineEntier {
         for (int i = 0; i < listePaires.size(); i++) {
             //Check if the chaine is in the list
             if (listePaires.get(i).getChaine().equals(chaine)) {
+                // return it's index if it is
                 return i;
             }
         }
+        // return -1 if it isn't
         return -1;
 
     }
@@ -32,12 +34,13 @@ public class UtilitairePaireChaineEntier {
      */
     public static int entierPourChaine(ArrayList<PaireChaineEntier> listePaires, String chaine) {
         for (int i = 0; i < listePaires.size(); i++) {
-            //Check if the chaine is in the list
+            // check if the chaine is in the list
             if (listePaires.get(i).getChaine().equals(chaine)) {
-                //Return it's entier associated with the chaine
+                // return it's entier associated with the chaine if it is
                 return listePaires.get(i).getEntier();
             }
         }
+        // return 0 if it isn't
         return 0;
     
     }
@@ -52,12 +55,15 @@ public class UtilitairePaireChaineEntier {
     public static String chaineMax(ArrayList<PaireChaineEntier> listePaires) {
         int max = 0;
         String chaine = "";
+        // for each PaireChaineEntier in the list
         for (PaireChaineEntier paire : listePaires) {
+            // check if the entier is higher than the current max
             if (paire.getEntier() > max) {
                 max = paire.getEntier();
                 chaine = paire.getChaine();
             }
         }
+        // return the chaine with the highest entier
         return chaine;
     }
 
@@ -69,12 +75,14 @@ public class UtilitairePaireChaineEntier {
      * @return The average of the integers in the list.
      */
     public static float moyenne(ArrayList<PaireChaineEntier> listePaires) {
-        int nb = 0;
-        int i = listePaires.size();
+        int nb = 0; // total of all the integers
+        // for each PaireChaineEntier in the list
         for (PaireChaineEntier paire : listePaires) {
+            // add the entier to the total
             nb += paire.getEntier();
         }
-        return nb/i;
+        // return the average
+        return nb/listePaires.size();
     }
 
 }
