@@ -69,6 +69,10 @@ public class Classification {
                     scores.add(new PaireChaineEntier(c.getNom(), c.score(d)));
                 }
                 // write the results to the file
+//                for (PaireChaineEntier score : scores) {
+//                    System.out.print(score.getChaine() + score.getEntier() + " ");
+//                }
+//                System.out.println();
                 file.write(d.getId() + ":" + UtilitairePaireChaineEntier.chaineMax(scores) + "\n");
                 if (UtilitairePaireChaineEntier.chaineMax(scores).equals(d.getCategorie())) {
                     justes.put(d.getCategorie(), justes.get(d.getCategorie()) + 1);
@@ -179,9 +183,9 @@ public class Classification {
      * @return the weight corresponding to the score
      */
     public static int poidsPourScore(int score) {
-        if (score < -50){return 0;}
-        else if (score < -10){return 1;}
-        else if (score < 0) {return 2;}
+        if (score < 2){return 0;}
+        else if (score <= 5){return 1;}
+        else if (score < 10) {return 2;}
         else {return 3;}
     }
     
@@ -234,10 +238,14 @@ public class Classification {
         categories.add(new Categorie("POLITIQUE"));
         categories.add(new Categorie("SPORTS"));
         for (Categorie c : categories) {
+//            System.out.println("-------------catégorie " + c.getNom());
             generationLexique(depeches, c.getNom(), c.getNom() + ".txt");
             c.initLexique(c.getNom() + ".txt");
+//            for (PaireChaineEntier mot : c.getLexique()) {
+//                System.out.println(mot.getChaine() + ":" + mot.getEntier());
+//            }
         }
-//        classementDepeches(depeches, categories, "result.txt");
+        classementDepeches(depeches, categories, "result.txt");
     }
 
 

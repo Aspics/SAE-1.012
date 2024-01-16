@@ -33,11 +33,12 @@ public class UtilitairePaireChaineEntier {
      * @return the integer value associated with the string, or 0 if the string is not found.
      */
     public static int entierPourChaine(ArrayList<PaireChaineEntier> listePaires, String chaine) {
-        for (int i = 0; i < listePaires.size(); i++) {
+        for (PaireChaineEntier paire : listePaires) {
             // check if the chaine is in the list
-            if (listePaires.get(i).getChaine().equals(chaine)) {
+            if (paire.getChaine().equals(chaine)) {
                 // return it's entier associated with the chaine if it is
-                return listePaires.get(i).getEntier();
+//                System.out.println(chaine + " " + paire.getChaine());
+                return paire.getEntier();
             }
         }
         // return 0 if it isn't
