@@ -237,7 +237,7 @@ public class Classification {
             generationLexique(depeches, c.getNom(), c.getNom() + ".txt");
             c.initLexique(c.getNom() + ".txt");
         }
-        classementDepeches(depeches, categories, "result.txt");
+//        classementDepeches(depeches, categories, "result.txt");
     }
 
 
