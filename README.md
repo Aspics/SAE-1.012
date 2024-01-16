@@ -7,7 +7,7 @@ Part 1 :
 
 5.2 b & c) Done but to test
 
-5.2 d & e) Done but to test
+5.2 d & e) Done
 
 
 5.3 a & b) Done
