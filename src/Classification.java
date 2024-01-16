@@ -51,10 +51,10 @@ public class Classification {
      * @param nomFichier   The name of the file to write the results to.
      */
     public static void classementDepeches(ArrayList<Depeche> depeches, ArrayList<Categorie> categories, String nomFichier) {
-        Hashtable<String, Integer> justes = new Hashtable<>();
-        // init the hashtable with the categories and 0 as default value
+        ArrayList<PaireChaineEntier> justes = new ArrayList<>();
+        // init the dictionary of correct classifications per category
         for (Categorie c : categories) {
-            justes.put(c.getNom(), 0);
+            justes.add(new PaireChaineEntier(c.getNom(), 0));
         }
         try {
             
@@ -69,25 +69,21 @@ public class Classification {
                     scores.add(new PaireChaineEntier(c.getNom(), c.score(d)));
                 }
                 // write the results to the file
-//                for (PaireChaineEntier score : scores) {
-//                    System.out.print(score.getChaine() + score.getEntier() + " ");
-//                }
-//                System.out.println();
                 file.write(d.getId() + ":" + UtilitairePaireChaineEntier.chaineMax(scores) + "\n");
+
                 if (UtilitairePaireChaineEntier.chaineMax(scores).equals(d.getCategorie())) {
-                    justes.put(d.getCategorie(), justes.get(d.getCategorie()) + 1);
+                    int indexcat = UtilitairePaireChaineEntier.indicePourChaine(justes, d.getCategorie());
+                    justes.get(indexcat).setEntier(justes.get(indexcat).getEntier()+1);
                 }
             }
-            // write the percentage of correct classifications
-            for (String c : justes.keySet()) {
-                file.write(c + ":\t\t\t\t\t\t\t\t" + justes.get(c) + "%\n");
-            }
-
-            // write the average percentage of correct classifications
+            System.out.println("----------------------STATS----------------------");
+            //write the percentages of correct classifications
             int moy = 0;
-            for (int i : justes.values()) {
-                moy += i;
+            for (PaireChaineEntier paire : justes) {
+                moy += paire.getEntier();
+                file.write(paire.getChaine() + ":\t\t\t\t\t\t\t\t" + paire.getEntier() + "%\n");
             }
+            //write the average
             file.write("MOYENNE:\t\t\t\t\t\t\t\t" + moy/5 + "%");
             file.close();
         } catch (IOException e) {
@@ -183,8 +179,8 @@ public class Classification {
      * @return the weight corresponding to the score
      */
     public static int poidsPourScore(int score) {
-        if (score < 2){return 0;}
-        else if (score <= 5){return 1;}
+        if (score < 0){return 0;}
+        else if (score < 5){return 1;}
         else if (score < 10) {return 2;}
         else {return 3;}
     }
@@ -227,25 +223,23 @@ public class Classification {
     public static void main(String[] args) {
 
         //Chargement des dépêches en mémoire
-        System.out.println("chargement des dépêches");
         ArrayList<Depeche> depeches = lectureDepeches("./depeches.txt");
         //creating categories
-        System.out.println("création des catégories");
         ArrayList<Categorie> categories = new ArrayList<>();
         categories.add(new Categorie("ENVIRONNEMENT-SCIENCES"));
         categories.add(new Categorie("CULTURE"));
         categories.add(new Categorie("ECONOMIE"));
         categories.add(new Categorie("POLITIQUE"));
         categories.add(new Categorie("SPORTS"));
+
         for (Categorie c : categories) {
-//            System.out.println("-------------catégorie " + c.getNom());
+            //initialize the lexicon files and the categories
             generationLexique(depeches, c.getNom(), c.getNom() + ".txt");
             c.initLexique(c.getNom() + ".txt");
-//            for (PaireChaineEntier mot : c.getLexique()) {
-//                System.out.println(mot.getChaine() + ":" + mot.getEntier());
-//            }
         }
+        //resolve the problem
         classementDepeches(depeches, categories, "result.txt");
+        System.out.println("classification written in result.txt");
     }
 
 
