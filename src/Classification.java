@@ -201,6 +201,7 @@ public class Classification {
             for (PaireChaineEntier paire : lexique) {
                 file.write(paire.getChaine() + ":" + paire.getEntier());
             }
+            file.close();
 
         } catch (IOException e) {
             e.printStackTrace();
