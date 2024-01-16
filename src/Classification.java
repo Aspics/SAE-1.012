@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -185,7 +186,25 @@ public class Classification {
     }
 
     public static void generationLexique(ArrayList<Depeche> depeches, String categorie, String nomFichier) {
+        //initialize the lexicon
+        ArrayList<PaireChaineEntier> lexique = initDico(depeches, categorie);
+        //calculate the score of the words based on their frequency
+        calculScores(depeches, categorie, lexique);
+        //assign a weight based on the score
+        for (PaireChaineEntier paire : lexique) {
+            paire.setEntier(poidsPourScore(paire.getEntier()));
+        }
 
+        try {
+            //write the result to the file
+            FileWriter file = new FileWriter(nomFichier);
+            for (PaireChaineEntier paire : lexique) {
+                file.write(paire.getChaine() + ":" + paire.getEntier());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
