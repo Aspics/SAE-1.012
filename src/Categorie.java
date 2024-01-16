@@ -114,7 +114,11 @@ public class Categorie {
 
     //calcul du score d'une dépêche pour la catégorie
     public int score(Depeche d) {
-        return 0;
+        int score = 0;
+        for (String word : d.getMots()) {
+            score += UtilitairePaireChaineEntier.entierPourChaine(lexique, word);
+        }
+        return score;
     }
 
 
