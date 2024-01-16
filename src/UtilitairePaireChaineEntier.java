@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UtilitairePaireChaineEntier {
 
@@ -32,15 +35,13 @@ public class UtilitairePaireChaineEntier {
      * @param chaine the chaine to search for.
      * @return the integer value associated with the string, or 0 if the string is not found.
      */
-    public static int entierPourChaine(ArrayList<PaireChaineEntier> listePaires, String chaine) {
-        for (PaireChaineEntier paire : listePaires) {
-            // check if the chaine is in the list
-            if (paire.getChaine().equals(chaine)) {
-                // return it's entier associated with the chaine if it is
-//                System.out.println(chaine + " " + paire.getChaine());
-                return paire.getEntier();
-            }
+    public static int entierPourChaine(HashMap<String, Integer> listePaires, String chaine) {
+        // check if the chaine is in the list
+        if (listePaires.containsKey(chaine)) {
+            // return it's entier associated with the chaine if it is
+            return listePaires.get(chaine);
         }
+        
         // return 0 if it isn't
         return 0;
     
@@ -53,17 +54,11 @@ public class UtilitairePaireChaineEntier {
      * @param listePaires the list of PaireChaineEntier objects to search in.
      * @return the string with the highest integer value, or an empty string if the list is empty.
      */
-    public static String chaineMax(ArrayList<PaireChaineEntier> listePaires) {
-        int max = 0;
+    public static String chaineMax(HashMap<String, Integer> listePaires) {
         String chaine = "";
-        // for each PaireChaineEntier in the list
-        for (PaireChaineEntier paire : listePaires) {
-            // check if the entier is higher than the current max
-            if (paire.getEntier() > max) {
-                max = paire.getEntier();
-                chaine = paire.getChaine();
-            }
-        }
+        // 
+        chaine = Collections.max(listePaires.entrySet(), Map.Entry.comparingByValue()).getKey();
+
         // return the chaine with the highest entier
         return chaine;
     }
@@ -75,15 +70,15 @@ public class UtilitairePaireChaineEntier {
      * @param listePaires The list of PaireChaineEntier objects.
      * @return The average of the integers in the list.
      */
-    public static float moyenne(ArrayList<PaireChaineEntier> listePaires) {
-        int nb = 0; // total of all the integers
+    public static float moyenne(HashMap<String, Integer> listePaires) {
+        Integer nb = 0; // total of all the integers
         // for each PaireChaineEntier in the list
-        for (PaireChaineEntier paire : listePaires) {
+        for (Integer paire : listePaires.values()) {
             // add the entier to the total
-            nb += paire.getEntier();
+            nb += paire;
         }
         // return the average
-        return (float) nb /listePaires.size();
+        return (float) nb / listePaires.size();
     }
 
 }

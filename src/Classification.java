@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.*;
 
 public class Classification {
-    // test git
 
 
     public static ArrayList<Depeche> lectureDepeches(String nomFichier) {
@@ -101,10 +100,10 @@ public class Classification {
      * @param categorie The category of depeches to consider.
      * @return The initialized dictionary of word-frequency pairs.
      */
-    public static ArrayList<PaireChaineEntier> initDico(ArrayList<Depeche> depeches, String categorie) {
+    public static HashMap<String, Integer> initDico(ArrayList<Depeche> depeches, String categorie) {
         
 
-        ArrayList<PaireChaineEntier> resultat = new ArrayList<>();
+        HashMap<String, Integer> dico = new HashMap<>();
 
         for (int i = 0; i < depeches.size(); i++) {
 
@@ -115,22 +114,14 @@ public class Classification {
 
                     // check if mot is already in the list
                     String mot = depeches.get(i).getMots().get(j);
-                    boolean containsMot = false;
-                    for (PaireChaineEntier paire : resultat) {
-                        if (paire.getChaine().equals(mot)) {
-                            containsMot = true;
-                            break;
-                        }
-                    }
-                    // if not, add it
-                    if (!containsMot) {
-                        resultat.add(new PaireChaineEntier(mot, 0));
+                    if (!dico.containsKey(mot)) {
+                        dico.put(mot, 0);
                     }
                 }
             }
         }
 
-        return resultat;
+        return dico;
 
     }
 
@@ -143,27 +134,26 @@ public class Classification {
      * @param categorie   the category to calculate scores for
      * @param dictionnaire the dictionary containing PaireChaineEntier objects
      */
-    public static void calculScores(ArrayList<Depeche> depeches, String categorie, ArrayList<PaireChaineEntier> dictionnaire) {
+    public static void calculScores(ArrayList<Depeche> depeches, String categorie, HashMap<String, Integer> dictionnaire) {
         // for each depeche
         for (Depeche dep : depeches){
             // check if depeche is in the right category
             if (dep.getCategorie().equals(categorie)){
                 // increment the score of each word in the depeche
                 for (String mot : dep.getMots()){
-                    for (PaireChaineEntier paire : dictionnaire){
-                        if (paire.getChaine().equals(mot)){
-                            paire.setEntier(paire.getEntier() + 1);
-                        }
+                    // check if the word is in the dictionary
+                    if (dictionnaire.containsKey(mot)){
+                        // increment it's score
+                        dictionnaire.put(mot, dictionnaire.get(mot) + 1);
                     }
+                    
                 }
             }
             else {
                 // decrement the score of each word in the depeche
-                for (String mot : dep.getMots()){
-                    for (PaireChaineEntier paire : dictionnaire){
-                        if (paire.getChaine().equals(mot)){
-                            paire.setEntier(paire.getEntier() - 1);
-                        }
+                for (String mot : dep.getMots()) {
+                    if (dictionnaire.containsKey(mot)){
+                        dictionnaire.put(mot, dictionnaire.get(mot) - 1);
                     }
                 }
             }
@@ -197,23 +187,20 @@ public class Classification {
      */
     public static void generationLexique(ArrayList<Depeche> depeches, String categorie, String nomFichier) {
         //initialize the lexicon
-        ArrayList<PaireChaineEntier> lexique = initDico(depeches, categorie);
+        HashMap<String, Integer> lexique = initDico(depeches, categorie);
         //calculate the score of the words based on their frequency
         calculScores(depeches, categorie, lexique);
+
         //assign a weight based on the score
-        for (PaireChaineEntier paire : lexique) {
-            paire.setEntier(poidsPourScore(paire.getEntier()));
-        }
+        lexique.replaceAll((k, v) -> v=poidsPourScore(v));
 
         try {
             //write the result to the file
             FileWriter file = new FileWriter(nomFichier);
-            for (PaireChaineEntier paire : lexique) {
-                //delete lines with weight 0
-                if (paire.getEntier() != 0) {
-                    file.write(paire.getChaine() + ":" + paire.getEntier() + "\n");
-                }
-            }
+            
+            //delete lines with weight 0
+            lexique.values().removeAll(Collections.singleton(0));
+
             file.close();
 
         } catch (IOException e) {

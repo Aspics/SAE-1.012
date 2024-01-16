@@ -1,12 +1,13 @@
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Categorie {
 
     private final String nom; // le nom de la catégorie p.ex : sport, politique,...
-    private ArrayList<PaireChaineEntier> lexique; //le lexique de la catégorie
+    private HashMap<String, Integer> lexique; //le lexique de la catégorie
 
     // constructeur
     public Categorie(String nom) {
@@ -19,7 +20,7 @@ public class Categorie {
     }
 
 
-    public  ArrayList<PaireChaineEntier> getLexique() {
+    public  HashMap<String, Integer> getLexique() {
         return lexique;
     }
    
@@ -30,7 +31,7 @@ public class Categorie {
      */
     public void initLexique(String nomFichier) {
 
-        ArrayList<PaireChaineEntier> lexique = new ArrayList<>();
+        HashMap<String, Integer> lexique = new HashMap();
 
         try {
             // lecture du fichier d'entrée
@@ -44,7 +45,7 @@ public class Categorie {
                 if (!ligne.isEmpty()) {
                     String[] res = ligne.split(":");
                     // add the word and it's score to the lexique
-                    lexique.add(new PaireChaineEntier(res[0], Integer.parseInt(res[1])));
+                    lexique.put(res[0], Integer.parseInt(res[1]));
                 }
                 
             }
