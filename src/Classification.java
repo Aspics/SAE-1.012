@@ -106,15 +106,7 @@ public class Classification {
                     }
                     //If not, add it
                     if (!containsMot) {
-                        resultat.add(new PaireChaineEntier(mot, 1));
-                    } else {
-                        //If yes, increment its score
-                        for (PaireChaineEntier paire : resultat) {
-                            if (paire.getChaine().equals(mot)) {
-                                paire.setEntier(paire.getEntier() + 1);
-                                break;
-                            }
-                        }
+                        resultat.add(new PaireChaineEntier(mot, 0));
                     }
                 }
             }
