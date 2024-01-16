@@ -1,6 +1,5 @@
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -31,7 +30,7 @@ public class Categorie {
      */
     public void initLexique(String nomFichier) {
 
-        HashMap<String, Integer> lexique = new HashMap();
+        HashMap<String, Integer> lexique = new HashMap<>();
 
         try {
             // lecture du fichier d'entrée
