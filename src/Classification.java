@@ -44,7 +44,7 @@ public class Classification {
 
 
     public static void classementDepeches(ArrayList<Depeche> depeches, ArrayList<Categorie> categories, String nomFichier) {
-        Dictionary<String, Integer> justes = new Hashtable<>();
+        Hashtable<String, Integer> justes = new Hashtable<>();
         for (Categorie c : categories) {
             justes.put(c.getNom(), 0);
         }
@@ -62,7 +62,7 @@ public class Classification {
                     justes.put(d.getCategorie(), justes.get(d.getCategorie()) + 1);
                 }
             }
-            for (String c : justes.keys()) {
+            for (String c : justes.keySet()) {
 
             }
 
