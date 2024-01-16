@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -184,7 +183,16 @@ public class Classification {
         else if (score > 100 && score < 400){return 2;}
         else {return 3;}
     }
+    
 
+    /**
+     * Generates a lexicon for the given category based on the given list of Depeche objects.
+     * Writes the result to a file.
+     * 
+     * @param depeches the list of Depeche objects
+     * @param categorie the category to generate the lexicon for
+     * @param nomFichier the name of the file to write the result to
+     */
     public static void generationLexique(ArrayList<Depeche> depeches, String categorie, String nomFichier) {
         //initialize the lexicon
         ArrayList<PaireChaineEntier> lexique = initDico(depeches, categorie);
