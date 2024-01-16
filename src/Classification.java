@@ -57,15 +57,20 @@ public class Classification {
                 for (Categorie c : categories) {
                     scores.add(new PaireChaineEntier(c.getNom(), c.score(d)));
                 }
-                file.write(d.getId() + ":" + UtilitairePaireChaineEntier.chaineMax(scores));
+                file.write(d.getId() + ":" + UtilitairePaireChaineEntier.chaineMax(scores) + "\n");
                 if (UtilitairePaireChaineEntier.chaineMax(scores).equals(d.getCategorie())) {
                     justes.put(d.getCategorie(), justes.get(d.getCategorie()) + 1);
                 }
             }
             for (String c : justes.keySet()) {
-
+                file.write(c + ":\t\t\t\t" + justes.get(c) + "%\n");
             }
-
+            int moy = 0;
+            for (int i : justes.values()) {
+                moy += i;
+            }
+            file.write("MOYENNE:\t\t\t\t" + moy/5 + "%");
+            file.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
