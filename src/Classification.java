@@ -6,9 +6,7 @@ import java.util.*;
 public class Classification {
 
 
-    public static ArrayList<Depeche> lectureDepeches(String nomFichier) {
-        // Warning : Changed lectureDepeches from private to public to be able to use it in Categorie.java
-
+    private static ArrayList<Depeche> lectureDepeches(String nomFichier) {
 
         //creation d'un tableau de dépêches
         ArrayList<Depeche> depeches = new ArrayList<>();
@@ -63,7 +61,7 @@ public class Classification {
                 }
             }
             for (String c : justes.keySet()) {
-
+                
             }
 
         } catch (IOException e) {
