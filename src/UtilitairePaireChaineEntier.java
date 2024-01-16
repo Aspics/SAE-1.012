@@ -28,36 +28,39 @@ public class UtilitairePaireChaineEntier {
 
     }
 
+    
     /**
-     * Returns the integer value associated with the given string in the list of PaireChaineEntier objects (listePaires).
-     * If no matching string is found, returns 0.
-     *
-     * @param listePaires the list of PaireChaineEntier objects to search in.
-     * @param chaine the chaine to search for.
-     * @return the integer value associated with the string, or 0 if the string is not found.
+     * Retrieves the integer value associated with a given string from a HashMap.
+     * 
+     * @param listePaires The HashMap containing the string-integer pairs.
+     * @param chaine The string for which the associated integer value is to be retrieved.
+     * @return The integer value associated with the given string, or 0 if the string is not found in the HashMap.
      */
     public static int entierPourChaine(HashMap<String, Integer> listePaires, String chaine) {
+        // function should be shorter if not for the need of returning 0 if the chaine is not found instead of null
+
         // check if the chaine is in the list
         if (listePaires.containsKey(chaine)) {
             // return it's entier associated with the chaine if it is
             return listePaires.get(chaine);
         }
-        
         // return 0 if it isn't
         return 0;
     
     }
 
+    
     /**
-     * Returns the string with the highest integer value in the list of PaireChaineEntier objects (listePaires).
-     * If the list is empty, returns an empty string.
-     *
-     * @param listePaires the list of PaireChaineEntier objects to search in.
-     * @return the string with the highest integer value, or an empty string if the list is empty.
+     * Returns the string with the highest integer value from the given HashMap.
+     * Returns an empty string if the HashMap is empty.
+     * 
+     * @param listePaires the HashMap containing string-integer pairs
+     * @return the string with the highest integer value
      */
     public static String chaineMax(HashMap<String, Integer> listePaires) {
         String chaine = "";
-        // 
+
+        // find the chaine with the highest entier
         chaine = Collections.max(listePaires.entrySet(), Map.Entry.comparingByValue()).getKey();
 
         // return the chaine with the highest entier

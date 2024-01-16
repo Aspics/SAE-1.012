@@ -126,13 +126,14 @@ public class Classification {
     }
 
 
+
     /**
-     * Calculates the scores for each word in the given list of Depeche objects based on the specified category.
-     * Updates the integer value of each PaireChaineEntier object in the given dictionary accordingly.
+     * Calculates the scores of words in the given list of depeches based on the specified category and dictionary.
+     * The scores are incremented for words in depeches belonging to the specified category, and decremented for words in depeches not belonging to the category.
      *
-     * @param depeches    the list of Depeche objects
-     * @param categorie   the category to calculate scores for
-     * @param dictionnaire the dictionary containing PaireChaineEntier objects
+     * @param depeches     the list of depeches to calculate scores for
+     * @param categorie    the category to consider for score calculation
+     * @param dictionnaire the dictionary containing words and their scores
      */
     public static void calculScores(ArrayList<Depeche> depeches, String categorie, HashMap<String, Integer> dictionnaire) {
         // for each depeche

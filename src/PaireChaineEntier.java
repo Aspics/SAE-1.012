@@ -1,3 +1,5 @@
+
+/* This Class is useless if we use HashMaps*/
 public class PaireChaineEntier {
 
     private String chaine; // un mot du lexique
