@@ -207,7 +207,7 @@ public class Classification {
             //write the result to the file
             FileWriter file = new FileWriter(nomFichier);
             for (PaireChaineEntier paire : lexique) {
-                file.write(paire.getChaine() + ":" + paire.getEntier());
+                file.write(paire.getChaine() + ":" + paire.getEntier() + "\n");
             }
             file.close();
 
@@ -221,11 +221,18 @@ public class Classification {
         //Chargement des dépêches en mémoire
         System.out.println("chargement des dépêches");
         ArrayList<Depeche> depeches = lectureDepeches("./depeches.txt");
-
-        for (int i = 0; i < depeches.size(); i++) {
-            depeches.get(i).afficher();
+        //creating categories
+        System.out.println("création des catégories");
+        ArrayList<Categorie> categories = new ArrayList<>();
+        categories.add(new Categorie("ENVIRONNEMENT-SCIENCES"));
+        categories.add(new Categorie("CULTURE"));
+        categories.add(new Categorie("ECONOMIE"));
+        categories.add(new Categorie("POLITIQUE"));
+        categories.add(new Categorie("SPORTS"));
+        for (Categorie c : categories) {
+            generationLexique(depeches, c.getNom(), c.getNom() + ".txt");
+            c.initLexique(c.getNom() + ".txt");
         }
-
     }
 
 
