@@ -22,9 +22,6 @@ public class Categorie {
     public  ArrayList<PaireChaineEntier> getLexique() {
         return lexique;
     }
-
-
-    // initialisation du lexique de la catégorie à partir du contenu d'un fichier texte
    
     /**
      * Initializes the lexique by reading the contents of a file.
