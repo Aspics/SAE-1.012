@@ -42,6 +42,13 @@ public class UtilitairePaireChaineEntier {
     
     }
 
+    /**
+     * Returns the string with the highest integer value in the list of PaireChaineEntier objects (listePaires).
+     * If the list is empty, returns an empty string.
+     *
+     * @param listePaires the list of PaireChaineEntier objects to search in.
+     * @return the string with the highest integer value, or an empty string if the list is empty.
+     */
     public static String chaineMax(ArrayList<PaireChaineEntier> listePaires) {
         int max = 0;
         String chaine = "";
