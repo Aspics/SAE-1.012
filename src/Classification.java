@@ -100,7 +100,9 @@ public class Classification {
     }
 
     public static int poidsPourScore(int score) {
-        return 0;
+        if (score < 100){return 1;}
+        else if (score > 100 && score < 400){return 2;}
+        else {return 3;}
     }
 
     public static void generationLexique(ArrayList<Depeche> depeches, String categorie, String nomFichier) {
