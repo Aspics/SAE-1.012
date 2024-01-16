@@ -1,3 +1,5 @@
+import com.sun.security.jgss.GSSUtil;
+
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -179,8 +181,8 @@ public class Classification {
      * @return the weight corresponding to the score
      */
     public static int poidsPourScore(int score) {
-        if (score < 100){return 1;}
-        else if (score > 100 && score < 400){return 2;}
+        if (score < 10){return 1;}
+        else if (score < 20){return 2;}
         else {return 3;}
     }
     
@@ -230,8 +232,10 @@ public class Classification {
         categories.add(new Categorie("POLITIQUE"));
         categories.add(new Categorie("SPORTS"));
         for (Categorie c : categories) {
+            System.out.println("catégorie " + c.getNom());
             generationLexique(depeches, c.getNom(), c.getNom() + ".txt");
             c.initLexique(c.getNom() + ".txt");
+
         }
     }
 
