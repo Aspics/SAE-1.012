@@ -62,32 +62,7 @@ public class Categorie {
     }
 
 
-        
-        /**
-         * Initializes the lexique by reading sentences from a file and adding unique words to the lexique.
-         * The lexique is stored as an ArrayList of PaireChaineEntier objects.
-         * 
-         * @param nomFichier The name of the file to read sentences from.
-         */
-        public void initLexiqueModif(String nomFichier) {
-            // Warning : Changed lectureDepeches  in Classification.java from private to public to be able to use it in Categorie.java
 
-            // initialisation du lexique de la catégorie à partir du contenu d'un fichier texte
-
-
-            // lecture du fichier d'entrée
-            ArrayList<Depeche> depeche = Classification.lectureDepeches(nomFichier);
-            
-            // create an ArrayList of all words in depeche
-            ArrayList<PaireChaineEntier> lexique = new ArrayList<>();
-            
-            // add all words from the category to the lexique
-            lexique.addAll(Classification.initDico(depeche, nom));
-            
-            
-            this.lexique = lexique;
-            
-        }
 
     //calcul du score d'une dépêche pour la catégorie
     /**
