@@ -13,7 +13,7 @@ Part 1 :
 5.3 a & b) Done
 
 
-5.4 a & b) TODO
+5.4 a & b) Done need to test
 
 
 5.5 a) Done
@@ -27,7 +27,7 @@ Part 2 :
 
 3.1) Done
 
-3.2) TODO
+3.2) Done
 
 3.3) Done? Need to be altered for weights since that's temp ones
 
