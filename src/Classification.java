@@ -106,6 +106,7 @@ public class Classification {
      * @param dictionnaire the dictionary containing PaireChaineEntier objects
      */
     public static void calculScores(ArrayList<Depeche> depeches, String categorie, ArrayList<PaireChaineEntier> dictionnaire) {
+        // for each depeche
         for (Depeche dep : depeches){
             // check if depeche is in the right category
             if (dep.getCategorie().equals(categorie)){
