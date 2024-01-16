@@ -10,7 +10,7 @@ Part 1 :
 5.2 d & e) Done but to test
 
 
-5.3 a & b) TODO
+5.3 a & b) Done
 
 
 5.4 a & b) TODO
