@@ -78,7 +78,7 @@ public class Classification {
             }
             // write the percentage of correct classifications
             for (String c : justes.keySet()) {
-                file.write(c + ":\t\t\t\t" + justes.get(c) + "%\n");
+                file.write(c + ":\t\t\t\t\t\t\t\t" + justes.get(c) + "%\n");
             }
 
             // write the average percentage of correct classifications
@@ -86,7 +86,7 @@ public class Classification {
             for (int i : justes.values()) {
                 moy += i;
             }
-            file.write("MOYENNE:\t\t\t\t" + moy/5 + "%");
+            file.write("MOYENNE:\t\t\t\t\t\t\t\t" + moy/5 + "%");
             file.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -181,8 +181,9 @@ public class Classification {
      * @return the weight corresponding to the score
      */
     public static int poidsPourScore(int score) {
-        if (score < 10){return 1;}
-        else if (score < 20){return 2;}
+        if (score < -50){return 0;}
+        else if (score < -10){return 1;}
+        else if (score < 0) {return 2;}
         else {return 3;}
     }
     
@@ -209,7 +210,10 @@ public class Classification {
             //write the result to the file
             FileWriter file = new FileWriter(nomFichier);
             for (PaireChaineEntier paire : lexique) {
-                file.write(paire.getChaine() + ":" + paire.getEntier() + "\n");
+                //delete lines with weight 0
+                if (paire.getEntier() != 0) {
+                    file.write(paire.getChaine() + ":" + paire.getEntier() + "\n");
+                }
             }
             file.close();
 
@@ -232,11 +236,10 @@ public class Classification {
         categories.add(new Categorie("POLITIQUE"));
         categories.add(new Categorie("SPORTS"));
         for (Categorie c : categories) {
-            System.out.println("catégorie " + c.getNom());
             generationLexique(depeches, c.getNom(), c.getNom() + ".txt");
             c.initLexique(c.getNom() + ".txt");
-
         }
+        classementDepeches(depeches, categories, "result.txt");
     }
 
 
