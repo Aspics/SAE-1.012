@@ -114,6 +114,7 @@ public class Classification {
 
                     // check if mot is already in the list
                     String mot = depeches.get(i).getMots().get(j);
+                    // if not, add it
                     if (!dico.containsKey(mot)) {
                         dico.put(mot, 0);
                     }
@@ -142,9 +143,7 @@ public class Classification {
             if (dep.getCategorie().equals(categorie)){
                 // increment the score of each word in the depeche
                 for (String mot : dep.getMots()){
-                    // check if the word is in the dictionary
                     if (dictionnaire.containsKey(mot)){
-                        // increment it's score
                         dictionnaire.put(mot, dictionnaire.get(mot) + 1);
                     }
                     
