@@ -1,27 +1,6 @@
-Part 1 : TEST REQUIRED
+# Part 1 : Done
 
 5.1 (partially done since that's just doing the lexique by hand so that's dumb)
-
-
-5.2 a) Done
-
-5.2 b & c) Done
-
-5.2 d & e) Done
-
-
-5.3 a & b) Done
-
-
-5.4 a & b) Done
-
-
-5.5 a) Done
-
-5.5) Done
-
-5.6) TODO
-
 
 Part 2 :
 
