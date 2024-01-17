@@ -156,8 +156,6 @@ public class Classification {
     public static void generationLexique(ArrayList<Depeche> depeches, String categorie, String nomFichier) {
         //initialize the lexicon
         HashMap<String, Integer> lexique = initDico(depeches, categorie);
-        //calculate the score of the words based on their frequency
-//        calculScores(depeches, categorie, lexique);
 
         //assign a weight based on the score
         lexique.replaceAll((k, v) -> poidsPourScore(v));
