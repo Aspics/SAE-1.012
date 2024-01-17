@@ -43,7 +43,7 @@ public class Classification {
 
 
     /**
-     *  Calulate for each categorie of categories the score of each depeche of depeches
+     *  Calculate for each categorie of categories the score of each depeche of depeches
      *  Writes the classification results to a file.
      *
      * @param depeches     The list of depeche to calculate the score of.
@@ -51,10 +51,10 @@ public class Classification {
      * @param nomFichier   The name of the file to write the results to.
      */
     public static void classementDepeches(ArrayList<Depeche> depeches, ArrayList<Categorie> categories, String nomFichier) {
-        ArrayList<PaireChaineEntier> justes = new ArrayList<>();
+        HashMap<String, Integer> justes = new HashMap<>();
         // init the dictionary of correct classifications per category
         for (Categorie c : categories) {
-            justes.add(new PaireChaineEntier(c.getNom(), 0));
+            justes.put(c.getNom(), 0);
         }
         try {
             
@@ -63,25 +63,24 @@ public class Classification {
             // for each depeche
             for (Depeche d : depeches) {
                 // calculate the score for each categorie
-                ArrayList<PaireChaineEntier> scores = new ArrayList<>();
+                HashMap<String, Integer> scores = new HashMap<>();
 
                 for (Categorie c : categories) {
-                    scores.add(new PaireChaineEntier(c.getNom(), c.score(d)));
+                    scores.put(c.getNom(), c.score(d));
                 }
                 // write the results to the file
                 file.write(d.getId() + ":" + UtilitairePaireChaineEntier.chaineMax(scores) + "\n");
 
                 if (UtilitairePaireChaineEntier.chaineMax(scores).equals(d.getCategorie())) {
-                    int indexcat = UtilitairePaireChaineEntier.indicePourChaine(justes, d.getCategorie());
-                    justes.get(indexcat).setEntier(justes.get(indexcat).getEntier()+1);
+                    justes.put(d.getCategorie(), justes.get(d.getCategorie())+1);
                 }
             }
             System.out.println("----------------------STATS----------------------");
             //write the percentages of correct classifications
             int moy = 0;
-            for (PaireChaineEntier paire : justes) {
-                moy += paire.getEntier();
-                file.write(paire.getChaine() + ":\t\t\t\t\t\t\t\t" + paire.getEntier() + "%\n");
+            for (String c : justes.keySet()) {
+                moy += justes.get(c);
+                file.write(c + ":\t\t\t\t\t\t\t\t" + justes.get(c) + "%\n");
             }
             //write the average
             file.write("MOYENNE:\t\t\t\t\t\t\t\t" + moy/5 + "%");
@@ -197,9 +196,13 @@ public class Classification {
         try {
             //write the result to the file
             FileWriter file = new FileWriter(nomFichier);
-            
-            //delete lines with weight 0
-            lexique.values().removeAll(Collections.singleton(0));
+
+            for (String s : lexique.keySet()) {
+                //write only the lines with weight more than 0
+                if (lexique.get(s) != 0) {
+                    file.write(s + ":" + lexique.get(s) + "\n");
+                }
+            }
 
             file.close();
 
