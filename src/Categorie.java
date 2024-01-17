@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Categorie {
 
-    private final String nom; // le nom de la catégorie p.ex : sport, politique,...
+    private final String nom; // Le nom de la catégorie p. Ex : sport, politique,...
     private HashMap<String, Integer> lexique; //le lexique de la catégorie
 
     // constructeur
@@ -36,7 +36,7 @@ public class Categorie {
             // lecture du fichier d'entrée
             FileInputStream file = new FileInputStream(nomFichier);
             Scanner scanner = new Scanner(file);
-            String ligne = "";
+            String ligne;
 
             // skip the lines without sentences then read them if they are in the category
             while (scanner.hasNextLine()) {

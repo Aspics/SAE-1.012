@@ -72,6 +72,7 @@ public class Classification {
                 String result = Collections.max(scores.entrySet(), Map.Entry.comparingByValue()).getKey();
                 file.write(d.getId() + ":" + result + "\n");
 
+                //update the counter of right results
                 if (result.equals(d.getCategorie())) {
                     justes.put(d.getCategorie(), justes.get(d.getCategorie())+1);
                 }
@@ -100,29 +101,22 @@ public class Classification {
      * @return The initialized dictionary of word-frequency pairs.
      */
     public static HashMap<String, Integer> initDico(ArrayList<Depeche> depeches, String categorie) {
-        
 
         HashMap<String, Integer> dico = new HashMap<>();
 
-        for (int i = 0; i < depeches.size(); i++) {
-
+        for (Depeche d : depeches) {
             // check if depeche is in the right category
-            if (depeches.get(i).getCategorie().equals(categorie)) {
-
-                for (int j = 0; j < depeches.get(i).getMots().size(); j++) {
-
+            if (d.getCategorie().equals(categorie)) {
+                for (String mot : d.getMots()) {
                     // check if mot is already in the list
-                    String mot = depeches.get(i).getMots().get(j);
-                    // if not, add it
                     if (!dico.containsKey(mot)) {
+                        // if not, add it
                         dico.put(mot, 0);
                     }
                 }
             }
         }
-
         return dico;
-
     }
 
 
@@ -188,7 +182,7 @@ public class Classification {
         calculScores(depeches, categorie, lexique);
 
         //assign a weight based on the score
-        lexique.replaceAll((k, v) -> v=poidsPourScore(v));
+        lexique.replaceAll((k, v) -> poidsPourScore(v));
 
         try {
             //write the result to the file
