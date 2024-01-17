@@ -56,10 +56,6 @@ public class Categorie {
         }
     }
 
-
-
-
-    //calcul du score d'une dépêche pour la catégorie
     /**
      * Calculates the score of a depeche for the category.
      * 
@@ -69,10 +65,10 @@ public class Categorie {
     public int score(Depeche d) {
         int score = 0;
         for (String word : d.getMots()) {
-            score += UtilitairePaireChaineEntier.entierPourChaine(lexique, word);
+            if (lexique.containsKey(word)) {
+                score += lexique.get(word);
+            }
         }
         return score;
     }
-
-
 }

@@ -69,9 +69,10 @@ public class Classification {
                     scores.put(c.getNom(), c.score(d));
                 }
                 // write the results to the file
-                file.write(d.getId() + ":" + UtilitairePaireChaineEntier.chaineMax(scores) + "\n");
+                String result = Collections.max(scores.entrySet(), Map.Entry.comparingByValue()).getKey();
+                file.write(d.getId() + ":" + result + "\n");
 
-                if (UtilitairePaireChaineEntier.chaineMax(scores).equals(d.getCategorie())) {
+                if (result.equals(d.getCategorie())) {
                     justes.put(d.getCategorie(), justes.get(d.getCategorie())+1);
                 }
             }
@@ -88,7 +89,6 @@ public class Classification {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
@@ -145,20 +145,17 @@ public class Classification {
                     if (dictionnaire.containsKey(mot)){
                         dictionnaire.put(mot, dictionnaire.get(mot) + 1);
                     }
-                    
                 }
             }
             else {
                 // decrement the score of each word in the depeche
                 for (String mot : dep.getMots()) {
-                    if (dictionnaire.containsKey(mot)){
+                    if (dictionnaire.containsKey(mot)) {
                         dictionnaire.put(mot, dictionnaire.get(mot) - 1);
                     }
                 }
             }
-                
         }
-
     }
 
 
