@@ -1,1 +1,8 @@
+.gitignore
 src/test.java
+CULTURE.txt
+ECONOMIE.txt
+ENVIRONEMENT.txt
+SPORT.txt
+POLITIQUE.txt
+result.txt
