@@ -24,28 +24,18 @@ public class UtilitairePaireChaineEntier {
 
     }
 
-
-    /**
-     * Searches for an integer value (entier) associated with a given string  (chaine) in a list of PaireChaineEntier objects.
-     * 
-     * @param listePaires The list of PaireChaineEntier objects to search in.
-     * @param chaine The string to search for.
-     * @return The integer value associated with the given string, or 0 if the string is not found.
-     */
-    public static int entierPourChaine(ArrayList<PaireChaineEntier> listePaires, String chaine) {
+    public static int dicoSearch(ArrayList<PaireChaineEntier> ar, String str) {
         int left = 0;
-        int right = listePaires.size() - 1;
-        // binary search
+        int right = ar.size() - 1;
+
         while (left <= right) {
             int mid = (right + left) / 2;
-            PaireChaineEntier midPaire = listePaires.get(mid);
-            String midChaine = midPaire.getChaine();
+            PaireChaineEntier midPaire = ar.get(mid);
 
-            int compareResult = chaine.compareTo(midChaine);
-            // return the entier if the string is found
-            // else continue the search on the left or right side of the list
+            int compareResult = str.compareTo(midPaire.getChaine());
+
             if (compareResult == 0) {
-                return midPaire.getEntier();
+                return mid;
             } else if (compareResult < 0) {
                 right = mid - 1;
             } else {
@@ -53,8 +43,23 @@ public class UtilitairePaireChaineEntier {
             }
         }
 
+        return -1;
+    }
+
+    /**
+     * Returns the integer value associated with the given string in the list of PaireChaineEntier objects (listePaires).
+     * If no matching string is found, returns 0.
+     *
+     * @param listePaires the list of PaireChaineEntier objects to search in.
+     * @param chaine the chaine to search for.
+     * @return the integer value associated with the string, or 0 if the string is not found.
+     */
+    public static int entierPourChaine(ArrayList<PaireChaineEntier> listePaires, String chaine) {
+        int i = dicoSearch(listePaires, chaine);
+        if (i != -1) {
+            return i;
+        }
         return 0;
-    
     }
 
     /**
