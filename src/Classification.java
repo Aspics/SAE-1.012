@@ -77,7 +77,7 @@ public class Classification {
                     justes.put(d.getCategorie(), justes.get(d.getCategorie())+1);
                 }
             }
-            file.write("----------------------STATS----------------------");
+            file.write("----------------------STATS----------------------\n");
             //write the percentages of correct classifications
             int moy = 0;
             for (String c : justes.keySet()) {
