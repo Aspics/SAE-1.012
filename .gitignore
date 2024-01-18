@@ -1,8 +1,2 @@
-.gitignore
 src/test.java
-CULTURE.txt
-ECONOMIE.txt
-ENVIRONNEMENT-SCIENCES.txt
-SPORTS.txt
-POLITIQUE.txt
-result.txt
+Lexicon_Result/
