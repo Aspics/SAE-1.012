@@ -23,9 +23,12 @@ public class Categorie {
         return lexique;
     }
    
+
     /**
-     * Initializes the lexique by reading the contents of a file.
-     * 
+     * Initializes the lexique by reading the contents of a file and populating it with words and their scores.
+     * The file should be in the format of each line containing a word and its score separated by a colon.
+     * The lexique is sorted in ascending order based on their words.
+     *
      * @param nomFichier the name of the file to read from
      */
     public void initLexique(String nomFichier) {
