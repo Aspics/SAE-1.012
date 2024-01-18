@@ -187,10 +187,11 @@ public class Classification {
 
 
     public static void main(String[] args) {
-        long startTime = System.currentTimeMillis();
 
         //Chargement des dépêches en mémoire
         ArrayList<Depeche> depeches = lectureDepeches("./depeches.txt");
+        long startTime = System.currentTimeMillis();
+
         //creating categories
         ArrayList<Categorie> categories = new ArrayList<>();
         categories.add(new Categorie("ENVIRONNEMENT-SCIENCES"));
