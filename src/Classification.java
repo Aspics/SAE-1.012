@@ -41,7 +41,6 @@ public class Classification {
     }
 
 
-
     /**
      *  Calculate for each categorie of categories the score of each depeche of depeches
      *  Writes the classification results to a file.
@@ -109,47 +108,26 @@ public class Classification {
             if (d.getCategorie().equals(categorie)) {
                 for (String mot : d.getMots()) {
                     // check if mot is already in the list
-                    if (!dico.containsKey(mot)) {
+                    if (dico.containsKey(mot)) {
+                        //if yes, increment its score
+                        dico.put(mot, dico.get(mot) + 1);
+                    } else {
                         // if not, add it
+                        dico.put(mot, 1);
+                    }
+                }
+            } else {
+                //if not, decrement the score of each word in the depeche
+                for (String mot : d.getMots()) {
+                    if (dico.containsKey(mot)) {
+                        dico.put(mot, dico.get(mot) - 1);
+                    } else {
                         dico.put(mot, 0);
                     }
                 }
             }
         }
         return dico;
-    }
-
-
-
-    /**
-     * Calculates the scores of words in the given list of depeches based on the specified category and dictionary.
-     * The scores are incremented for words in depeches belonging to the specified category, and decremented for words in depeches not belonging to the category.
-     *
-     * @param depeches     the list of depeches to calculate scores for
-     * @param categorie    the category to consider for score calculation
-     * @param dictionnaire the dictionary containing words and their scores
-     */
-    public static void calculScores(ArrayList<Depeche> depeches, String categorie, HashMap<String, Integer> dictionnaire) {
-        // for each depeche
-        for (Depeche dep : depeches){
-            // check if depeche is in the right category
-            if (dep.getCategorie().equals(categorie)){
-                // increment the score of each word in the depeche
-                for (String mot : dep.getMots()){
-                    if (dictionnaire.containsKey(mot)){
-                        dictionnaire.put(mot, dictionnaire.get(mot) + 1);
-                    }
-                }
-            }
-            else {
-                // decrement the score of each word in the depeche
-                for (String mot : dep.getMots()) {
-                    if (dictionnaire.containsKey(mot)) {
-                        dictionnaire.put(mot, dictionnaire.get(mot) - 1);
-                    }
-                }
-            }
-        }
     }
 
 
@@ -160,12 +138,12 @@ public class Classification {
      * @return the weight corresponding to the score
      */
     public static int poidsPourScore(int score) {
-        if (score < 0){return 0;}
+        if (score <= 0){return 0;}
         else if (score < 5){return 1;}
         else if (score < 10) {return 2;}
         else {return 3;}
     }
-    
+
 
     /**
      * Generates a lexicon for the given category based on the given list of Depeche objects.
@@ -178,8 +156,6 @@ public class Classification {
     public static void generationLexique(ArrayList<Depeche> depeches, String categorie, String nomFichier) {
         //initialize the lexicon
         HashMap<String, Integer> lexique = initDico(depeches, categorie);
-        //calculate the score of the words based on their frequency
-        calculScores(depeches, categorie, lexique);
 
         //assign a weight based on the score
         lexique.replaceAll((k, v) -> poidsPourScore(v));
@@ -201,6 +177,7 @@ public class Classification {
             e.printStackTrace();
         }
     }
+
 
     public static void main(String[] args) {
 
