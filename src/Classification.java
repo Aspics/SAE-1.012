@@ -50,6 +50,7 @@ public class Classification {
      * @param nomFichier   The name of the file to write the results to.
      */
     public static void classementDepeches(ArrayList<Depeche> depeches, ArrayList<Categorie> categories, String nomFichier) {
+        long startTime = System.currentTimeMillis();
         HashMap<String, Integer> justes = new HashMap<>();
         // init the dictionary of correct classifications per category
         for (Categorie c : categories) {
@@ -76,7 +77,7 @@ public class Classification {
                     justes.put(d.getCategorie(), justes.get(d.getCategorie())+1);
                 }
             }
-            System.out.println("----------------------STATS----------------------");
+            file.write("----------------------STATS----------------------");
             //write the percentages of correct classifications
             int moy = 0;
             for (String c : justes.keySet()) {
@@ -86,6 +87,8 @@ public class Classification {
             //write the average
             file.write("MOYENNE:\t\t\t\t\t\t\t\t" + moy/5 + "%");
             file.close();
+            long endTime = System.currentTimeMillis();
+            System.out.println("function classementDepeches: " + (endTime - startTime) + "ms");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,7 +103,7 @@ public class Classification {
      * @return The initialized dictionary of word-frequency pairs.
      */
     public static HashMap<String, Integer> initDico(ArrayList<Depeche> depeches, String categorie) {
-
+        long startTime = System.currentTimeMillis();
         HashMap<String, Integer> dico = new HashMap<>();
 
         for (Depeche d : depeches) {
@@ -127,6 +130,8 @@ public class Classification {
                 }
             }
         }
+        long endTime = System.currentTimeMillis();
+        System.out.println("function initDico: " + (endTime - startTime) + "ms");
         return dico;
     }
 
@@ -156,7 +161,7 @@ public class Classification {
     public static void generationLexique(ArrayList<Depeche> depeches, String categorie, String nomFichier) {
         //initialize the lexicon
         HashMap<String, Integer> lexique = initDico(depeches, categorie);
-
+        long startTime = System.currentTimeMillis();
         //assign a weight based on the score
         lexique.replaceAll((k, v) -> poidsPourScore(v));
 
@@ -172,6 +177,8 @@ public class Classification {
             }
 
             file.close();
+            long endTime = System.currentTimeMillis();
+            System.out.println("function generationLexique: " + (endTime - startTime) + "ms");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -180,6 +187,7 @@ public class Classification {
 
 
     public static void main(String[] args) {
+        long startTime = System.currentTimeMillis();
 
         //Chargement des dépêches en mémoire
         ArrayList<Depeche> depeches = lectureDepeches("./depeches.txt");
@@ -193,12 +201,16 @@ public class Classification {
 
         for (Categorie c : categories) {
             //initialize the lexicon files and the categories
+            System.out.println("-------------------Cartegoy " + c.getNom() + "-------------------");
             generationLexique(depeches, c.getNom(), c.getNom() + ".txt");
             c.initLexique(c.getNom() + ".txt");
         }
         //resolve the problem
+        System.out.println("--------------------------------------");
         classementDepeches(depeches, categories, "result.txt");
         System.out.println("classification written in result.txt");
+        long endTime = System.currentTimeMillis();
+        System.out.println("Total time: " + (endTime - startTime) + "ms");
     }
 
 
