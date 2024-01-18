@@ -20,7 +20,7 @@ pays:1
 nord:1
 sud:1
 élargit:1
-étude:2
+étude:1
 décès:1
 liés:1
 tabagisme:1
@@ -36,7 +36,7 @@ pentagone:1
 abattre:1
 satellite-espion:1
 perdition:1
-satellite:2
+satellite:1
 tonne:1
 environ:1
 décroché:1
@@ -61,13 +61,13 @@ montre:1
 misé:1
 vent:1
 émissions:2
-gaz:2
+gaz:1
 effet:2
 serre:2
 baissé:1
 surfaces:1
 cultivées:1
-ogm:2
+ogm:1
 augmenté:1
 superficies:1
 plantées:1
@@ -285,7 +285,7 @@ pratique:1
 gestation:1
 autrui:1
 gpa:1
-navette:2
+navette:1
 atlantis:1
 amarrée:1
 iss:1
@@ -333,7 +333,7 @@ pièces:1
 biologie:1
 synthétique:1
 plein:1
-objet:2
+objet:1
 fabriquer:1
 spécifiquement:1
 vouées:1
@@ -364,12 +364,12 @@ serait:2
 frappée:1
 ouragan:1
 catégorie:1
-salon:2
+salon:1
 agriculture:2
 pac:1
 rénovée:1
 république:1
-déclaré:2
+déclaré:1
 souhaitait:1
 engager:1
 véritable:1
@@ -691,7 +691,7 @@ garder:1
 sols:1
 pédothèque:1
 institut:1
-recherche:2
+recherche:1
 agronomique:1
 accueillera:1
 200:1
@@ -807,7 +807,7 @@ menaces:1
 sérieuses:1
 viabilité:1
 habitent:1
-ministère:2
+ministère:1
 musées:1
 demandes:1
 restitution:1
@@ -890,7 +890,7 @@ nucléaires:1
 vive:1
 controverse:1
 locale:1
-producteurs:2
+producteurs:1
 yucca:1
 mountain:1
 lequel:1

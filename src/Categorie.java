@@ -29,7 +29,7 @@ public class Categorie {
      * @param nomFichier the name of the file to read from
      */
     public void initLexique(String nomFichier) {
-
+        long startTime = System.currentTimeMillis();
         ArrayList<PaireChaineEntier> lexique = new ArrayList<>();
 
         try {
@@ -51,6 +51,8 @@ public class Categorie {
             scanner.close();
 
             this.lexique = lexique;
+            long endTime = System.currentTimeMillis();
+            System.out.println("Function initLexique: " + (endTime-startTime) + "ms");
         } catch (IOException e) {
             e.printStackTrace();
         }

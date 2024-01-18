@@ -1,4 +1,4 @@
-art:2
+art:1
 lyrique:1
 invite:1
 arte:1
@@ -17,7 +17,7 @@ défis:1
 japonais:1
 saburo:1
 teshigawara:1
-chorégraphe:2
+chorégraphe:1
 théâtre:3
 chaillot:1
 galeries:1
@@ -28,7 +28,7 @@ style:1
 enregistrer:1
 disparition:1
 nature:1
-concert:2
+concert:1
 show:1
 christophe:1
 willem:1
@@ -36,7 +36,7 @@ star:1
 chaîne:1
 m6:1
 sorti:1
-album:2
+album:1
 avril:1
 atteindre:1
 600:1
@@ -77,7 +77,7 @@ séoul:1
 connue:1
 namdaemun:1
 arrêté:1
-musique:2
+musique:1
 européenne:1
 étendre:1
 durée:1
@@ -128,7 +128,7 @@ egypte:1
 poussin:1
 fui:1
 importante:1
-mécénat:2
+mécénat:1
 organisée:1
 réunir:1
 17:1
@@ -139,7 +139,7 @@ chanteur:1
 miel:1
 guitariste:1
 jazz:1
-compositeur:2
+compositeur:1
 hors:1
 pair:1
 inoubliable:1
@@ -165,8 +165,8 @@ graphique:1
 duo:1
 expose:1
 pompidou:1
-galerie:2
-festival:2
+galerie:1
+festival:1
 blues:1
 hip-hop:1
 folk:1
@@ -207,7 +207,7 @@ kamini:1
 génération:1
 chanteurs:1
 passer:1
-culture:2
+culture:1
 rébellion:1
 rigolade:1
 huber:1
@@ -275,7 +275,7 @@ quelques:1
 amis:1
 étaient:1
 venus:1
-hommage:2
+hommage:1
 écrivain:1
 cinéaste:1
 âge:1
@@ -378,7 +378,7 @@ tragédie:1
 vlaminck:1
 fauve:1
 centaine:1
-oeuvres:2
+oeuvres:1
 luxembourg:1
 consacre:1
 rétrospective:1

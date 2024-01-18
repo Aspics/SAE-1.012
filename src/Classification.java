@@ -51,6 +51,8 @@ public class Classification {
      * @param nomFichier   The name of the file to write the results to.
      */
     public static void classementDepeches(ArrayList<Depeche> depeches, ArrayList<Categorie> categories, String nomFichier) {
+        long startTime = System.currentTimeMillis();
+
         ArrayList<PaireChaineEntier> justes = new ArrayList<>();
         // init the dictionary of correct classifications per category
         for (Categorie c : categories) {
@@ -76,7 +78,7 @@ public class Classification {
                     justes.get(indexcat).setEntier(justes.get(indexcat).getEntier()+1);
                 }
             }
-            System.out.println("----------------------STATS----------------------");
+            file.write("----------------------STATS----------------------");
             //write the percentages of correct classifications
             int moy = 0;
             for (PaireChaineEntier paire : justes) {
@@ -86,6 +88,8 @@ public class Classification {
             //write the average
             file.write("MOYENNE:\t\t\t\t\t\t\t\t" + moy/5 + "%");
             file.close();
+            long endTime = System.currentTimeMillis();
+            System.out.println("Function classementDepeches: " + (endTime-startTime) + "ms");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,8 +105,8 @@ public class Classification {
      * @return The initialized dictionary of word-frequency pairs.
      */
     public static ArrayList<PaireChaineEntier> initDico(ArrayList<Depeche> depeches, String categorie) {
-        
 
+        long startTime = System.currentTimeMillis();
         ArrayList<PaireChaineEntier> resultat = new ArrayList<>();
 
         for (int i = 0; i < depeches.size(); i++) {
@@ -128,7 +132,8 @@ public class Classification {
                 }
             }
         }
-
+        long endTime = System.currentTimeMillis();
+        System.out.println("Function initDico: " + (endTime-startTime) + "ms");
         return resultat;
 
     }
@@ -144,6 +149,7 @@ public class Classification {
      */
     public static void calculScores(ArrayList<Depeche> depeches, String categorie, ArrayList<PaireChaineEntier> dictionnaire) {
         // for each depeche
+        long startTime = System.currentTimeMillis();
         for (Depeche dep : depeches){
             // check if depeche is in the right category
             if (dep.getCategorie().equals(categorie)){
@@ -166,9 +172,9 @@ public class Classification {
                     }
                 }
             }
-                
         }
-
+        long endTime = System.currentTimeMillis();
+        System.out.println("Function calculScores: " + (endTime-startTime) + "ms");
     }
 
 
@@ -199,6 +205,7 @@ public class Classification {
         ArrayList<PaireChaineEntier> lexique = initDico(depeches, categorie);
         //calculate the score of the words based on their frequency
         calculScores(depeches, categorie, lexique);
+        long startTime = System.currentTimeMillis();
         //assign a weight based on the score
         for (PaireChaineEntier paire : lexique) {
             paire.setEntier(poidsPourScore(paire.getEntier()));
@@ -214,13 +221,15 @@ public class Classification {
                 }
             }
             file.close();
-
+            long endTime = System.currentTimeMillis();
+            System.out.println("Function generationLexique: " + (endTime-startTime) + "ms");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
+        long startTime = System.currentTimeMillis();
 
         //Chargement des dépêches en mémoire
         ArrayList<Depeche> depeches = lectureDepeches("./depeches.txt");
@@ -233,13 +242,17 @@ public class Classification {
         categories.add(new Categorie("SPORTS"));
 
         for (Categorie c : categories) {
+            System.out.println("--------------------------Category " + c.getNom() + "--------------------------");
             //initialize the lexicon files and the categories
             generationLexique(depeches, c.getNom(), c.getNom() + ".txt");
             c.initLexique(c.getNom() + ".txt");
         }
         //resolve the problem
+        System.out.println("----------------------------------------------------");
         classementDepeches(depeches, categories, "result.txt");
         System.out.println("classification written in result.txt");
+        long endTime = System.currentTimeMillis();
+        System.out.println("execution time: " + (endTime-startTime) + "ms");
     }
 
 
