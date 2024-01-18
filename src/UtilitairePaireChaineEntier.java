@@ -12,26 +12,16 @@ public class UtilitairePaireChaineEntier {
      * @return The index of the first occurrence of the specified string, or -1 if the string is not found.
      */
     public static int indicePourChaine(ArrayList<PaireChaineEntier> listePaires, String chaine) {
-        int left = 0;
-        int right = listePaires.size() - 1;
-
-        while (left <= right) {
-            int mid = (left + right) / 2;
-            PaireChaineEntier midPaire = listePaires.get(mid);
-            String midChaine = midPaire.getChaine();
-
-            int compareResult = chaine.compareTo(midChaine);
-
-            if (compareResult == 0) {
-                return mid;
-            } else if (compareResult < 0) {
-                right = mid - 1;
-            } else {
-                left = mid + 1;
+        for (int i = 0; i < listePaires.size(); i++) {
+            //Check if the chaine is in the list
+            if (listePaires.get(i).getChaine().equals(chaine)) {
+                // return it's index if it is
+                return i;
             }
         }
-
+        // return -1 if it isn't
         return -1;
+
     }
 
     /**
@@ -63,6 +53,7 @@ public class UtilitairePaireChaineEntier {
         }
 
         return 0;
+    
     }
 
     /**
