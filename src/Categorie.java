@@ -49,7 +49,7 @@ public class Categorie {
                 
             }
             scanner.close();
-
+            quicksort.sort2(lexique, 0, lexique.size() - 1);
             this.lexique = lexique;
             long endTime = System.currentTimeMillis();
             System.out.println("Function initLexique: " + (endTime-startTime) + "ms");

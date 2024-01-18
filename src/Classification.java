@@ -185,7 +185,7 @@ public class Classification {
      * @return the weight corresponding to the score
      */
     public static int poidsPourScore(int score) {
-        if (score < 0){return 0;}
+        if (score <= 0){return 0;}
         else if (score < 5){return 1;}
         else if (score < 10) {return 2;}
         else {return 3;}

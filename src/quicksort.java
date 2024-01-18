@@ -27,7 +27,7 @@ public class quicksort {
         return i + 1;
     }
 
-    private ArrayList<PaireChaineEntier> sort2(ArrayList<PaireChaineEntier> ar, int lo, int hi){
+    public static ArrayList<PaireChaineEntier> sort2(ArrayList<PaireChaineEntier> ar, int lo, int hi){
         if (lo < hi){
             int splitPoint = partition2(ar, lo, hi);
             sort2(ar, lo, splitPoint);
@@ -36,7 +36,7 @@ public class quicksort {
         return ar;
     }
 
-    private int partition2(ArrayList<PaireChaineEntier> ar, int lo, int hi){
+    private static int partition2(ArrayList<PaireChaineEntier> ar, int lo, int hi){
         String pivot = ar.get(lo).getChaine();
         lo--;
         hi++;
@@ -57,7 +57,7 @@ public class quicksort {
         }
     }
 
-    private ArrayList<PaireChaineEntier> swap(ArrayList<PaireChaineEntier> ar, int a, int b){
+    private static ArrayList<PaireChaineEntier> swap(ArrayList<PaireChaineEntier> ar, int a, int b){
         PaireChaineEntier temp = ar.get(a);
         ar.set(a, ar.get(b));
         ar.set(b, temp);
