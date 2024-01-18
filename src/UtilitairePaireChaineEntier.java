@@ -24,25 +24,26 @@ public class UtilitairePaireChaineEntier {
 
     }
 
+
     /**
-     * Returns the integer value associated with the given string in the list of PaireChaineEntier objects (listePaires).
-     * If no matching string is found, returns 0.
-     *
-     * @param listePaires the list of PaireChaineEntier objects to search in.
-     * @param chaine the chaine to search for.
-     * @return the integer value associated with the string, or 0 if the string is not found.
+     * Searches for an integer value (entier) associated with a given string  (chaine) in a list of PaireChaineEntier objects.
+     * 
+     * @param listePaires The list of PaireChaineEntier objects to search in.
+     * @param chaine The string to search for.
+     * @return The integer value associated with the given string, or 0 if the string is not found.
      */
     public static int entierPourChaine(ArrayList<PaireChaineEntier> listePaires, String chaine) {
         int left = 0;
         int right = listePaires.size() - 1;
-
+        // binary search
         while (left <= right) {
             int mid = (right + left) / 2;
             PaireChaineEntier midPaire = listePaires.get(mid);
             String midChaine = midPaire.getChaine();
 
             int compareResult = chaine.compareTo(midChaine);
-
+            // return the entier if the string is found
+            // else continue the search on the left or right side of the list
             if (compareResult == 0) {
                 return midPaire.getEntier();
             } else if (compareResult < 0) {
