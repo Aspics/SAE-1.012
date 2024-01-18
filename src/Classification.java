@@ -78,7 +78,7 @@ public class Classification {
                     justes.get(indexcat).setEntier(justes.get(indexcat).getEntier()+1);
                 }
             }
-            file.write("----------------------STATS----------------------");
+            file.write("----------------------STATS----------------------\n");
             //write the percentages of correct classifications
             int moy = 0;
             for (PaireChaineEntier paire : justes) {
