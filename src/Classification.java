@@ -83,9 +83,11 @@ public class Classification {
             for (String c : justes.keySet()) {
                 moy += justes.get(c);
                 file.write(c + ":\t\t\t\t\t\t\t\t" + justes.get(c) + "%\n");
+                System.out.println(c + ":\t\t\t\t\t\t\t\t" + justes.get(c) + "%");
             }
             //write the average
             file.write("MOYENNE:\t\t\t\t\t\t\t\t" + moy/5 + "%");
+            System.out.println("MOYENNE:\t\t\t\t\t\t\t\t" + moy/5 + "%");
             file.close();
             long endTime = System.currentTimeMillis();
             System.out.println("function classementDepeches: " + (endTime - startTime) + "ms");
