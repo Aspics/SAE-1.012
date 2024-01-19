@@ -202,7 +202,7 @@ public class Classification {
 
         for (Categorie c : categories) {
             //initialize the lexicon files and the categories
-            System.out.println("-------------------Cartegoy " + c.getNom() + "-------------------");
+            System.out.println("-------------------Category " + c.getNom() + "-------------------");
             generationLexique(depeches, c.getNom(), c.getNom() + ".txt");
             c.initLexique(c.getNom() + ".txt");
         }
