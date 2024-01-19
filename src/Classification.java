@@ -77,14 +77,17 @@ public class Classification {
                 }
             }
             System.out.println("----------------------STATS----------------------");
+            file.write("----------------------STATS----------------------");
             //write the percentages of correct classifications
             int moy = 0;
             for (PaireChaineEntier paire : justes) {
                 moy += paire.getEntier();
                 file.write(paire.getChaine() + ":\t\t\t\t\t\t\t\t" + paire.getEntier() + "%\n");
+                System.out.println(paire.getChaine() + ":\t\t\t\t\t\t\t\t" + paire.getEntier() + "%");
             }
             //write the average
             file.write("MOYENNE:\t\t\t\t\t\t\t\t" + moy/5 + "%");
+            System.out.println("MOYENNE:\t\t\t\t\t\t\t\t" + moy/5 + "%");
             file.close();
         } catch (IOException e) {
             e.printStackTrace();
