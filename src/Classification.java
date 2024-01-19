@@ -84,9 +84,11 @@ public class Classification {
             for (PaireChaineEntier paire : justes) {
                 moy += paire.getEntier();
                 file.write(paire.getChaine() + ":\t\t\t\t\t\t\t\t" + paire.getEntier() + "%\n");
+                System.out.println(paire.getChaine() + ":\t\t\t\t\t\t\t\t" + paire.getEntier() + "%");
             }
             //write the average
             file.write("MOYENNE:\t\t\t\t\t\t\t\t" + moy/5 + "%");
+            System.out.println("MOYENNE:\t\t\t\t\t\t\t\t" + moy/5 + "%");
             file.close();
             long endTime = System.currentTimeMillis();
             System.out.println("Function classementDepeches: " + (endTime-startTime) + "ms");
