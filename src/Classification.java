@@ -43,7 +43,7 @@ public class Classification {
 
 
     /**
-     *  Calulate for each categorie of categories the score of each depeche of depeches
+     *  Calculate for each categorie of categories the score of each depeche of depeches
      *  Writes the classification results to a file.
      *
      * @param depeches     The list of depeche to calculate the score of.
